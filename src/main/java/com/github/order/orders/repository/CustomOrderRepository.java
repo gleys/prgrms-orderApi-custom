@@ -1,7 +1,6 @@
 package com.github.order.orders.repository;
 
-import com.github.order.orders.application.dto.OrderResponse;
-import org.springframework.data.domain.Pageable;
+import com.github.order.orders.application.dto.order.OrderResponse;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.github.order.orders.application.dto;
+package com.github.order.orders.application.dto.order;
 
 import com.github.order.orders.domain.OrderState;
 import lombok.AllArgsConstructor;

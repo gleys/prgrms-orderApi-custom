@@ -1,6 +1,7 @@
 package com.github.order.orders.application;
 
-import com.github.order.orders.application.dto.OrderResponse;
+import com.github.order.orders.application.dto.ProductRequest;
+import com.github.order.orders.application.dto.order.OrderResponse;
 import com.github.order.orders.domain.Order;
 import com.github.order.orders.domain.OrderProduct;
 import com.github.order.orders.domain.OrderState;
@@ -11,12 +12,10 @@ import com.github.order.user.domain.User;
 import com.github.order.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.UUID;
 
 import static com.github.order.orders.domain.OrderState.*;
 
@@ -41,20 +40,22 @@ public class OrderService {
         return order.getId();
     }
 
-    public void addProduct(Long orderId, Long productId, Long quantity) {
-        Order findOrder = getOrder(orderId);
-        Product findProduct = getProduct(productId);
+    public boolean addProduct(ProductRequest requestForm) {
+        Order findOrder = getOrder(requestForm.getOrderId());
+        Product findProduct = getProduct(requestForm.getProductId());
         Long stock = findProduct.getQuantity();
 
-        if (stock - quantity < 0) {
+        if (stock - requestForm.getQuantity() < 0) {
             throw new IllegalArgumentException(
                     "주문 가능 수량을 초과하였습니다. (남은 수량 : "
                     + stock + ")"
             );
         }
 
-        OrderProduct orderProduct = OrderProduct.createOrderProduct(findOrder, findProduct, quantity);
+        OrderProduct orderProduct = OrderProduct.createOrderProduct(findOrder, findProduct, findProduct.getQuantity());
         findOrder.addOrderProduct(orderProduct);
+
+        return true;
     }
 
     @Transactional(readOnly = true)

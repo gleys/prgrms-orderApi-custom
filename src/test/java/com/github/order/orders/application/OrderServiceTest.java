@@ -1,37 +1,22 @@
 package com.github.order.orders.application;
 
-import com.github.order.orders.application.dto.OrderResponse;
-import com.github.order.orders.domain.Order;
-import com.github.order.orders.domain.OrderProduct;
-import com.github.order.orders.domain.OrderState;
+import com.github.order.orders.application.dto.order.OrderResponse;
 import com.github.order.orders.repository.OrderRepository;
-import com.github.order.orders.repository.OrderRepositoryImpl;
 import com.github.order.products.application.ProductService;
-import com.github.order.products.domain.Product;
-import com.github.order.products.dto.ProductForm;
 import com.github.order.user.application.UserService;
-import com.github.order.user.application.dto.RegisterForm;
-import com.github.order.user.domain.User;
 import com.github.order.user.repository.UserRepository;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
-import java.util.Optional;
 
-import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 @Slf4j
 @SpringBootTest

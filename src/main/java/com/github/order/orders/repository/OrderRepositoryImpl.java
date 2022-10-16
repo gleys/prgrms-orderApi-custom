@@ -1,8 +1,8 @@
 package com.github.order.orders.repository;
 
-import com.github.order.orders.application.dto.OrderResponse;
-import com.github.order.orders.application.dto.ProductForm;
-import com.github.order.orders.application.dto.ReviewForm;
+import com.github.order.orders.application.dto.order.OrderResponse;
+import com.github.order.orders.application.dto.order.ProductForm;
+import com.github.order.orders.application.dto.order.ReviewForm;
 import com.github.order.orders.domain.Order;
 import com.github.order.orders.domain.OrderProduct;
 import com.github.order.orders.domain.QOrder;
@@ -10,18 +10,13 @@ import com.github.order.orders.domain.QOrderProduct;
 
 import com.github.order.products.domain.QProduct;
 import com.github.order.review.domain.QReview;
-import com.github.order.user.domain.QUser;
-import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Slf4j
